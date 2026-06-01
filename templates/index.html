@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Raspberry Pi Monitor</title>
+  <link rel="stylesheet" href="/static/style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <header class="hero">
+    <h1>Raspberry Pi Monitor</h1>
+    <p>Live CPU temperature, frequency and throttle status</p>
+  </header>
+
+  <main class="container">
+    <section class="row">
+      <div class="card">
+        <h3>CPU Temperature</h3>
+        <div class="value" id="tempValue">— °C</div>
+      </div>
+      <div class="card">
+        <h3>CPU Frequency</h3>
+        <div class="value" id="freqValue">— Hz</div>
+      </div>
+      <div class="card">
+        <h3>Throttle</h3>
+        <div class="value" id="throttleValue">—</div>
+      </div>
+    </section>
+
+    <section class="chart-card">
+      <div class="card">
+        <h3>Temperature (last samples)</h3>
+        <canvas id="tempChart" height="120"></canvas>
+      </div>
+    </section>
+
+    <section class="settings">
+      <h3>Settings</h3>
+      <label>Update interval (ms):
+        <input type="number" id="intervalInput" min="250" step="250">
+      </label>
+      <button id="saveBtn">Save</button>
+      <small>Interval is stored in your browser.</small>
+    </section>
+  </main>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>

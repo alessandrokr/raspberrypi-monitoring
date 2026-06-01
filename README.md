@@ -1,4 +1,4 @@
-# Raspberry Pi Monitor
+# Raspberry Pi Monitoring
 Monitor your Pi.
 
 🛠️ Features:
