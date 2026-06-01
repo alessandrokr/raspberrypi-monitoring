@@ -3,6 +3,7 @@ from fastapi.responses import HTMLResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 from os import popen
+from pathlib import Path
 
 def measure_temp():
     r = popen("vcgencmd measure_temp").read()
@@ -22,13 +23,14 @@ def get_throttle():
 app = FastAPI()
 
 # serve templates and static frontend
-templates = Jinja2Templates(directory="templates")
-app.mount("/static", StaticFiles(directory="static"), name="static")
+base_dir = Path(__file__).parent
+templates = Jinja2Templates(directory=str(base_dir / "templates"))
+app.mount("/static", StaticFiles(directory=str(base_dir / "static")), name="static")
 
 
 @app.get("/", response_class=HTMLResponse)
 def index(request: Request):
-    return templates.TemplateResponse(name="index.html", context={"request": request})
+    return templates.TemplateResponse("index.html", {"request": request})
 
 
 @app.get("/cpu-temp")
